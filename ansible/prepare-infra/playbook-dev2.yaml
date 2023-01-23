@@ -1,0 +1,40 @@
+--- 
+- name: Install Docker
+  hosts: dev2
+  become: true
+
+  tasks:
+    - name: Install ca-certificates, cure, gnupg, lsb-release, and update repo
+      ansible.builtin.apt:
+        pkg:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: yes
+
+    - name: Install Docker repo key
+      ansible.builtin.shell: 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg'
+    
+    - name: Set up the repository
+      ansible.builtin.shell: 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+
+    - name: Install Docker
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+        state: present
+        update_cache: yes
+
+    - name: Start Docker
+      ansible.builtin.systemd:
+        name: docker.service
+        state: started
+# --- 
+# - name: Install Jenkins agent
+#   hosts: dev2
+#   become: true
