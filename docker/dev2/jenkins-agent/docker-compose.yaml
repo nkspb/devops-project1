@@ -8,4 +8,4 @@ services:
     expose:
       - 22
     environment:
-      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa 
+      - JENKINS_AGENT_SSH_PUBKEY=ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCobhHvlxn6xcwEib2KfYIRBMv1md3SenuqkrFezXFEDifrcIaHXCVYpE/P+0dV+RkC95II2OLJXyQ1RXSNKLsMHFQfevb8/fK1DO8BiJGZUbwH/bT4sEHSi8rEDOrRaG8do/nQT/3fHr0icWu11l/YMV7LOdAp7OJXzLew2OKgVMmmn02ww8KxrGHBRRkCxj2mQ1pvOrjp/KzfF/hZHZDkUrh586CCQMBsvi1BrLWVkgyxhWHfaeebbnl/GMs2TGeT747ubsDgLzRLOMcS8LSSp5GqoEprV0gZiJ0FsFla9cjP0q9oDXJyIyHqRFmWf9/9mmm1nVQdqj5WviNlRV/FVHL+pp/RHDue/yhr3ai1ufAj2A7zGmWNStGLLdNbuinxc1YUvtogfj/natf2ewBoqltsMpQco7y5uLVZW5DR1x3bAWaKyDdgB0mQFLMCYA8CElEePhtpcYm+ofeu0Cqi4lTMNoVzg0jrrCl+oCOkvxmZeX1PSzmKxKJgBgfVi+k= jenkins@dev1 
