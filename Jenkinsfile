@@ -7,10 +7,10 @@ pipeline {
     githubPush()
   }
 
-  node {
+  dev2 {
     // Ensure the desired Go version is installed on this agent,
     // using the name defined in the Global Tool Configuration
-    def root = tool type: 'go', name: '1.20.1'
+    def root = tool type: 'go', name: '1.19'
 
     // Export environment variables to pointing the Go installation;
     // the `PATH+X` syntax prepends an item to the existing `PATH`:
