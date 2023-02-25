@@ -50,7 +50,7 @@ pipeline {
     }
         stage('Build container') {
         steps {
-          sh "docker build -t web-server -f './app/Dockerfile/'"
+          sh "sudo docker build -t web-server -f './app/Dockerfile/'"
         }
      }
   }
