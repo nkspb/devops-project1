@@ -16,7 +16,7 @@ pipeline {
             sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
         // echo test1
           } 
-        } catch (err) {
+        catch (err) {
           echo err.getMessage()
         }
        }
