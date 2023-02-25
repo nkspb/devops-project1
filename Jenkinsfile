@@ -10,7 +10,8 @@ pipeline {
 
      stage('Compile app') {
        steps {
-         sh 'cd ./app; go mod init web-server/mod1'
+         sh 'cd ./app; go mod init web-server/mod1; go mod init'
+
          sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
         // echo test1
        }
