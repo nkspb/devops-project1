@@ -47,3 +47,9 @@
         name: kubectl
         classic: yes
         state: present
+
+    - name: Install Go
+      ansible.builtin.apt:
+        name: golang-go
+        state: present
+        update_cache: yes
