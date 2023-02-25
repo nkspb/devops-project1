@@ -4,11 +4,15 @@ pipeline {
     githubPush()
   }
   stages {
-     stage('build') {
+     stage('Compile app') {
        steps {
-         CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./app/
-         docker build -t web-server -f ./app/Dockerfile/
+         CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./app/h
        }
+      stage('Build container') {
+        steps {
+          docker build -t web-server -f ./app/Dockerfile/
+        }
+      }
   }
 }
 }
