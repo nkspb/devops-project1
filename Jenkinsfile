@@ -19,7 +19,7 @@ pipeline {
     go '1.20.1'
   }
   environment {
-        GO111MODULE = 'on'
+        GO111MODULE = 'auto'
   }
   
   triggers {
@@ -45,7 +45,7 @@ pipeline {
 
     stage("Build app") {
       steps {
-        sh "go build -a -installsuffix cgo -o main '.'"
+        sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
       }
     }
         stage('Build container') {
