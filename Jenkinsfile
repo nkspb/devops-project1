@@ -45,7 +45,7 @@ pipeline {
 
     stage("Build app") {
       steps {
-        sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
+        sh "cd ./app; CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
       }
     }
         stage('Build container') {
