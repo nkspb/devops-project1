@@ -1,13 +1,5 @@
-pipeline {
-  agent any
-  tools {
-    go '1.20.1'
-  }
-  triggers {
-    githubPush()
-  }
 
-  dev2 {
+  node {
     // Ensure the desired Go version is installed on this agent,
     // using the name defined in the Global Tool Configuration
     def root = tool type: 'go', name: '1.19'
@@ -20,6 +12,16 @@ pipeline {
         sh 'go version'
     }
 }
+
+pipeline {
+  agent any
+  tools {
+    go '1.20.1'
+  }
+  triggers {
+    githubPush()
+  }
+
 
   stages {
 
