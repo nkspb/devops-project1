@@ -10,10 +10,15 @@ pipeline {
 
      stage('Compile app') {
        steps {
-         sh 'cd ./app; go mod init'
-
-         sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
+        script {
+          try {
+            sh 'cd ./app; go mod init'
+            sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
         // echo test1
+          } 
+        } catch (err) {
+          echo err.getMessage()
+        }
        }
      }
 
