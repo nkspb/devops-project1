@@ -20,13 +20,13 @@ pipeline {
           echo err.getMessage()
         }
        }
+       }
      }
 
-      stage('Build container') {
+        stage('Build container') {
         steps {
           sh "docker build -t web-server -f './app/Dockerfile/'"
         }
-      }
-
+     }
   }
 }
