@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    go '1.20.1'
+  }
   triggers {
     githubPush()
   }
