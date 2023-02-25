@@ -21,6 +21,7 @@ pipeline {
   environment {
         GO111MODULE = 'on'
   }
+  
   triggers {
     githubPush()
   }
@@ -44,7 +45,7 @@ pipeline {
 
     stage("Build app") {
       steps {
-        sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
+        sh "go build -a -installsuffix cgo -o main '.'"
       }
     }
         stage('Build container') {
