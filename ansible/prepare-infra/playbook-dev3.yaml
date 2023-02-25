@@ -1,0 +1,30 @@
+--- 
+- name: Install minikube (KVM)
+  hosts: dev3
+  become: true
+
+  tasks:
+    - name: Install KVM
+      ansible.builtin.apt:
+        package: qemu-system-x86
+        state: present
+        update_cache: yes
+
+    - name: Download minikube
+      ansible.builtin.get_url:
+        url: 'https://github.com/kubernetes/minikube/releases/download/v1.29.0/minikube-linux-amd64'
+        dest: /tmp/minikube
+
+    - name: Install minikube
+      ansible.builtin.shell: 'install /tmp/minikube /usr/local/bin/'
+
+    - name: Install kubectl
+      community.general.snap:
+        name: kubectl
+        classic: yes
+        state: present
+
+
+
+
+    

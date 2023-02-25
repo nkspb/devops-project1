@@ -6,7 +6,7 @@ pipeline {
   stages {
      stage('build') {
        steps {
-         echo 'It works!'
+         CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ./app
        }
   }
 }

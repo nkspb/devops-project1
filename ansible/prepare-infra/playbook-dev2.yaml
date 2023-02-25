@@ -1,5 +1,5 @@
 --- 
-- name: Install Docker
+- name: Install Docker and Helm
   hosts: dev2
   become: true
 
@@ -34,3 +34,16 @@
       ansible.builtin.systemd:
         name: docker.service
         state: started
+      
+    - name: Install helm
+      community.general.snap:
+        name: helm
+        classic: yes
+        state: present
+
+
+    - name: Install kubectl
+      community.general.snap:
+        name: kubectl
+        classic: yes
+        state: present
