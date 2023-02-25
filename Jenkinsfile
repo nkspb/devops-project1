@@ -8,12 +8,11 @@ pipeline {
   }
   stages {
 
-     stage('Compile app') {
+     stage('Initialize app modules') {
        steps {
         script {
           try {
             sh 'cd ./app; go mod init'
-            sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
         // echo test1
           } 
         catch (err) {
@@ -23,6 +22,11 @@ pipeline {
        }
      }
 
+    stage("Build app") {
+      steps {
+        sh "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main './app/'"
+      }
+    }
         stage('Build container') {
         steps {
           sh "docker build -t web-server -f './app/Dockerfile/'"
