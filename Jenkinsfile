@@ -14,7 +14,7 @@
 // }
 
 pipeline {
-  agent any
+  agent {label 'dev2'}
   tools {
     go '1.20.1'
   }
