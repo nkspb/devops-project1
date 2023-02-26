@@ -50,6 +50,7 @@ pipeline {
     }
         stage('Build container') {
         steps {
+          sh "whoami"
           sh "cd ./app; docker build -t web-server -f Dockerfile ."
         }
      }
