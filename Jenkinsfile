@@ -15,12 +15,12 @@
 
 pipeline {
   agent {label 'dev2'}
-  tools {
-    go '1.20.1'
-  }
-  environment {
-        GO111MODULE = 'auto'
-  }
+//   tools {
+//     go '1.20.1'
+//   }
+//   environment {
+//         GO111MODULE = 'auto'
+//   }
   
   triggers {
     githubPush()
