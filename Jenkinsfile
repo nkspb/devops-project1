@@ -15,12 +15,12 @@
 
 pipeline {
   agent {label 'dev2'}
-//   tools {
-//     go '1.20.1'
-//   }
-//   environment {
-//         GO111MODULE = 'auto'
-//   }
+  tools {
+    go '1.20.1'
+  }
+  environment {
+        GO111MODULE = 'auto'
+  }
   
   triggers {
     githubPush()
@@ -29,19 +29,18 @@ pipeline {
 
   stages {
 
-     stage('Initialize app modules') {
-       steps {
-        script {
-          try {
-            sh 'cd ./app; go mod init'
-        // echo test1
-          } 
-        catch (err) {
-          echo err.getMessage()
-        }
-       }
-       }
-     }
+//      stage('Initialize app modules') {
+//        steps {
+//         script {
+//           try {
+//             sh 'cd ./app; go mod init'
+//           } 
+//         catch (err) {
+//           echo err.getMessage()
+//         }
+//        }
+//        }
+//      }
 
     stage("Build app") {
       steps {
