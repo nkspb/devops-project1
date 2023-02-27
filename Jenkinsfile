@@ -42,7 +42,7 @@ pipeline {
 
     stage ("Deploy image") {
       steps {
-        sh "helm upgrade --install --create-namespace --namespace go-server go-server helm/charts/go-server --set appVersion=$GIT_TAG"
+        sh "helm upgrade --install --create-namespace --namespace go-server go-server helm/go-server --set appVersion=$GIT_TAG"
 
       }
     }
