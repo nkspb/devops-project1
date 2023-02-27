@@ -7,7 +7,7 @@ pipeline {
   
   environment {
         GO111MODULE = 'auto'
-        TAG_NAME = sh (
+        GIT_TAG = sh (
           script: 'git describe --tags --abbrev=0',
           returnStdout: true
         ).trim()
@@ -26,9 +26,16 @@ pipeline {
     stage('Build container') {
      steps {
       sh "whoami"
-      sh "cd ./app; docker build -t web-server -f Dockerfile ."
-      sh "echo $TAG_NAME"
+      sh "cd ./app; docker build -t go-server -f Dockerfile ."
+      sh "docker image tag go-server nkom/go-server:$GIT_TAG"
      }
     }
+    stage "Publish container" {
+      steps {
+        sh "docker login -u nkom -p JDmqT2pHbSr9eiB"
+        sh "docker push nkom/go-server:$GIT_TAG"
+      }
+    }
+    
   }
 }
