@@ -15,7 +15,7 @@ spec:
         app: go-server
     spec:
       containers:
-          image: nkom/go-server:{{ .Values.appVersion }}
-          name: go-server
-          ports:
-            - containerPort: 8081
+          - image: nkom/go-server:{{ .Values.appVersion }}
+            name: go-server
+            ports:
+              - containerPort: 8081
