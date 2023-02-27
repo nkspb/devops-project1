@@ -24,7 +24,7 @@ pipeline {
      steps {
       sh "whoami"
       sh "cd ./app; docker build -t web-server -f Dockerfile ."
-      sh "echo $TAG_name"
+      sh "echo $TAG_NAME"
      }
     }
   }
