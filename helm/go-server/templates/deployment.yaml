@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: go-server
+  name: go-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-server
+  template:
+    metadata:
+      labels:
+        app: go-server
+    spec:
+      containers:
+          image: nkom/go-server:{{ .Values.appVersion }}
+          name: pg-app
+          ports:
+            - containerPort: 3003
