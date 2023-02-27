@@ -25,7 +25,11 @@ pipeline {
   triggers {
     githubPush()
   }
-
+  
+TAG = sh (
+            returnStdout: true,
+            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
+          ).trim()
 
   stages {
 
@@ -43,10 +47,7 @@ pipeline {
 //      }
 
     stage("Build app") {
-                TAG = sh (
-            returnStdout: true,
-            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
-          ).trim()
+                
       steps {
         sh "cd ./app; CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
       }
