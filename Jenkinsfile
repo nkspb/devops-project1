@@ -13,6 +13,11 @@
 //     }
 // }
 
+def TAG = sh (
+            returnStdout: true,
+            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
+          ).trim()
+
 pipeline {
   agent {label 'dev2'}
   tools {
@@ -26,10 +31,7 @@ pipeline {
     githubPush()
   }
   
-TAG = sh (
-            returnStdout: true,
-            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
-          ).trim()
+
 
   stages {
 
