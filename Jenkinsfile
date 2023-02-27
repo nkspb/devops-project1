@@ -7,7 +7,10 @@ pipeline {
   
   environment {
         GO111MODULE = 'auto'
-        TAG_NAME = "${env.BRANCH_NAME}"
+        TAG_NAME = sh (
+          script: 'git describe --tags --abbrev=0',
+          returnStdout: true
+        ).trim()
   }
   
   triggers {
