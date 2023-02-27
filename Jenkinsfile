@@ -33,13 +33,18 @@ pipeline {
      }
     }
     
-    stage ("Publish container") {
+    stage ("Publish image") {
       steps {
         sh "docker login -u nkom -p JDmqT2pHbSr9eiB"
         sh "docker push nkom/go-server:$GIT_TAG"
       }
     }
- 
+
+    stage ("Deploy image") {
+      steps {
+        sh "helm upgrade --install --create-namespace --namespace go-server go-server helm/charts/go-server --set appVersion=$GIT_TAG"
+
+      }
+    }
   }
-  
 }
