@@ -51,9 +51,12 @@ pipeline {
         steps {
           sh "whoami"
           sh "cd ./app; docker build -t web-server -f Dockerfile ."
-//           sh "docker image tag web-server nkom/web-server"
-//           sh "echo $TAG_NAME"
-          sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
+          TAG = sh (
+            returnStdout: true,
+            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
+          ).trim()
+          sh "echo $TAG"
+          
         }
      }
   }
