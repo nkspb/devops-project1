@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
           image: nkom/go-server:{{ .Values.appVersion }}
-          name: pg-app
+          name: go-server
           ports:
-            - containerPort: 3003
+            - containerPort: 8081
