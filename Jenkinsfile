@@ -43,6 +43,10 @@ pipeline {
 //      }
 
     stage("Build app") {
+                TAG = sh (
+            returnStdout: true,
+            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
+          ).trim()
       steps {
         sh "cd ./app; CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
       }
@@ -51,10 +55,7 @@ pipeline {
         steps {
           sh "whoami"
           sh "cd ./app; docker build -t web-server -f Dockerfile ."
-          TAG = sh (
-            returnStdout: true,
-            script: 'git fetch --tags && git tag --points-at HEAD | awk NF'
-          ).trim()
+
           sh "echo $TAG"
           
         }
