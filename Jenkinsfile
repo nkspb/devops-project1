@@ -18,24 +18,28 @@ pipeline {
   }
   
   stages {
-    stage("Build app") {          
+    
+    stage("Build app") {  
       steps {
         sh "cd ./app; CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main '.'"
       }
     }
-    stage('Build container') {
+    
+    stage("Build container") {
      steps {
       sh "whoami"
       sh "cd ./app; docker build -t go-server -f Dockerfile ."
       sh "docker image tag go-server nkom/go-server:$GIT_TAG"
      }
     }
-    stage "Publish container" {
+    
+    stage ("Publish container") {
       steps {
         sh "docker login -u nkom -p JDmqT2pHbSr9eiB"
         sh "docker push nkom/go-server:$GIT_TAG"
       }
     }
-    
+ 
   }
+  
 }
