@@ -9,7 +9,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello from version 1.7, %q", html.EscapeString(r.URL.Path))
+		fmt.Fprintf(w, "Hello from version 2.0, %q", html.EscapeString(r.URL.Path))
 	})
 
 	log.Fatal(http.ListenAndServe(":8081", nil))
